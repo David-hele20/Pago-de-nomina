@@ -1,1 +1,1 @@
-# Pago-de-nomina
+# Pago de nomina
