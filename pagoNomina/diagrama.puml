@@ -1,0 +1,44 @@
+@startuml
+    abstract class Empleado {
+        #id: String 
+        #nombre: String
+        # edad: int
+        #añoIngreso: int
+        #salarioBasico: double
+        +Empleado(id: String,nombre: String,edad: int,añoIngreso: int,salarioBasico: double)
+        +{abstract} calcularPagoMensual(): double
+
+    
+    }
+
+    class Vendedor {
+        - {static} PORCENTAJE_COMISION: double = 0.15
+        -ventasRealizadas: double
+        +Vendedor(id: String,nombre: String,edad: int,añoIngreso: int,salarioBasico: double,ventasRealizadas: double)    
+        +calcularPagoMensual(): double
+        +calcularBonificacion(): double
+
+
+    }
+
+    class Repartidor {
+        - {static} VALOR_REPARTO: double = 10000
+        -numeroRepartos: int
+        -zona:  char 
+        +Repartidor(id: String,nombre: String,edad: int,añoIngreso: int,salarioBasico: double,numeroRepartos: int, zona: char)
+        +calcularPagoMensual(): double
+        +calcularBonificacion(): double
+        -asignarZona(zona: char): char
+    }
+
+    class Empresa {
+        listaEmpleados:  Arraylist<Empleado>
+        +Empresa()
+        +agregarEmpleado(nuevoEmpleado: Empleado):void
+        +liquidarNomina(): void
+        +run(): void 
+    }
+    Empleado <|-- Vendedor: es un
+    Empleado <|-- Repartidor: es un
+    Empresa "1"  *-- "*" Empleado: tiene un 
+@enduml
